@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import "dog_model.dart";
+
 class AddDogFormPage extends StatefulWidget{
   @override 
   _AddDogFormPageState createState() => _AddDogFormPageState();
 }
 
 class _AddDogFormPageState extends State<AddDogFormPage>{
+
+  void submitPup(BuildContext context){
+    if(nameController.text.isEmpty){
+      print('Dogs need names!');
+    }else{
+      var newDog = Dog(nameController.text,locationController.text,descriptionController.text);
+      Navigator.of(context).pop(newDog);
+    }
+  }
+
+  TextEditingController nameController=TextEditingController();
+  TextEditingController locationController=TextEditingController();
+  TextEditingController descriptionController=TextEditingController();
+
   @override 
   Widget build(BuildContext context){
     return Scaffold(  
@@ -24,7 +40,8 @@ class _AddDogFormPageState extends State<AddDogFormPage>{
         children: [  
           Padding(  
             padding: const EdgeInsets.only(bottom:8.0),
-            child:TextField(  
+            child:TextField( 
+              onChanged: (v)=>nameController.text =v, 
               decoration: InputDecoration(  
                 labelText: "Name the Pup",
               ),
@@ -34,6 +51,7 @@ class _AddDogFormPageState extends State<AddDogFormPage>{
           Padding(  
             padding: const EdgeInsets.only(bottom:8.0),
             child:TextField(  
+              onChanged: (v)=>locationController.text =v, 
               decoration: InputDecoration(  
                 labelText: "Pup's Location",
               ),
@@ -43,6 +61,7 @@ class _AddDogFormPageState extends State<AddDogFormPage>{
           Padding(  
             padding: const EdgeInsets.only(bottom:8.0),
             child:TextField(  
+              onChanged: (v)=>descriptionController.text =v, 
               decoration: InputDecoration(  
                 labelText: "All about the pup",
               ),
@@ -54,7 +73,7 @@ class _AddDogFormPageState extends State<AddDogFormPage>{
             child:Builder(  
               builder: (context) {
                 return RaisedButton(  
-                  onPressed: ()=> print('PRESSED'),
+                  onPressed: ()=> submitPup(context),
                   color:Colors.indigoAccent, 
                   child:Text('Submit Pup'),
                 );

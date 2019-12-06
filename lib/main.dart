@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage>{
       ),
       body:Container(
         decoration: BoxDecoration(gradient:LinearGradient(begin: Alignment.topRight,end:Alignment.bottomLeft,stops:[0.1,0.5,0.7,0.9],colors: [Colors.indigo[800],Colors.indigo[700],Colors.indigo[600],Colors.indigo[400]],),),
-        // child: DogCard(initialDoggos[2]),
+
         child:Center( 
           child: DogList(initialDoggos),
         ),
