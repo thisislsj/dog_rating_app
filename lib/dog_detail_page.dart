@@ -37,12 +37,13 @@ class _DogDetailPageState extends State<DogDetailPage>{
       _ratingErrorDialog();   
     }else{ 
       setState(() => widget.dog.rating = _sliderValue.toInt());
-    }
-    
+    }    
   }
 
   Widget get dogImage{
-    return Container( 
+    return Hero(  
+      tag:widget.dog,
+      child: Container( 
       height: dogAvatarSize,
       width: dogAvatarSize,
 
@@ -70,6 +71,7 @@ class _DogDetailPageState extends State<DogDetailPage>{
           image:NetworkImage(widget.dog.imageUrl),
         ),
       ),
+    ),
     );
   }
 

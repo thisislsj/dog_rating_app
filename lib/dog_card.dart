@@ -56,7 +56,9 @@ class _DogCardState extends State<DogCard>{
 
   Widget get dogImage{
 
-    var dogAvatar=Container(
+    var dogAvatar=Hero( 
+      tag:dog,
+      child:Container(
       width: 100.0,
       height:100.0,
       decoration: BoxDecoration(
@@ -66,6 +68,7 @@ class _DogCardState extends State<DogCard>{
           image: NetworkImage(renderUrl ?? ''),
           ),
       ),
+    ),
     );
 
     var placeholder=Container(
