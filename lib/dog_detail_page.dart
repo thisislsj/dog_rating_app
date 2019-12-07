@@ -14,8 +14,31 @@ class _DogDetailPageState extends State<DogDetailPage>{
   final double dogAvatarSize=150.0;
   double _sliderValue =10.0;
 
+  Future<Null> _ratingErrorDialog() async{ 
+    return showDialog(  
+      context:context,
+      builder:(BuildContext context){  
+        return AlertDialog(  
+          title:Text('Error!'),
+          content: Text("They are good Dogs"),
+          actions: [  
+            FlatButton(  
+              child:Text('Try Again'),
+              onPressed:()=>Navigator.of(context).pop(),
+            )
+          ],
+        );
+      },
+    );
+  }
+
   void updateRating(){ 
-    setState(() => widget.dog.rating = _sliderValue.toInt());
+    if(_sliderValue<10){ 
+      _ratingErrorDialog();   
+    }else{ 
+      setState(() => widget.dog.rating = _sliderValue.toInt());
+    }
+    
   }
 
   Widget get dogImage{
